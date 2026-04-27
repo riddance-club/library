@@ -15,21 +15,21 @@ lib.Generators.GetRemaining() -> number
 lib.Generators.IsLast() -> boolean
 lib.Generators.GetTotalProgressDecimal() -> number
 lib.Generators.GetTotalProgressPercent() -> number
-lib.Generators.GetAll() -> table
+lib.Generators.GetAll() -> table (contains GeneratorModels)
 lib.Generators.IsCompleted(GeneratorModel) -> boolean
 lib.Generators.IsAvailable(GeneratorModel) -> boolean
 lib.Generators.IsUncompleted(GeneratorModel) -> boolean
 lib.Generators.IsUnavailable(GeneratorModel) -> boolean
-lib.Generators.GetCompleted() -> Model
-lib.Generators.GetUncompleted() -> Model
-lib.Generators.GetAvailable() -> Model
-lib.Generators.GetUnavailable() -> Model
+lib.Generators.GetCompleted() -> GeneratorModel
+lib.Generators.GetUncompleted() -> GeneratorModel
+lib.Generators.GetAvailable() -> GeneratorModel
+lib.Generators.GetUnavailable() -> GeneratorModel
 lib.Generators.GetClosest() -> Model, distance (number)
 lib.Generators.GetCurrentAmount(GeneratorModel) -> number
 lib.Generators.GetRequiredAmount(GeneratorModel) -> number
 lib.Generators.GetProgress(GeneratorModel) -> number
 
-lib.Players.GetAll() -> table
+lib.Players.GetAll() -> table (contains Players)
 lib.Players.GetLocal() -> LocalPlayer
 lib.Players.GetLocalCharacter() -> CharacterModel
 lib.Players.GetCharacter(Player) -> CharacterModel
@@ -47,7 +47,7 @@ lib.Players.GetStaminaRemaining(Player) -> number
 lib.Players.GetInventory(Player) -> table
 lib.Players.IsExtracting(Player) -> boolean
 
-lib.Twisteds.GetAll() -> table
+lib.Twisteds.GetAll() -> table (contains Monsters)
 lib.Twisteds.GetClosest() -> Monster, distance (number)
 
 lib.Map.GetElevator() -> ElevatorModel
