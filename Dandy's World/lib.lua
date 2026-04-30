@@ -73,9 +73,9 @@ lib.Game.GetInfoValue = function(value)
 end
 
 lib.Game.GetGameState = function()
-    if info.Voting.Value then
+    if Info.Voting.Value then
         return "Voting"
-    elseif info.FloorActive.Value then
+    elseif Info.FloorActive.Value then
         return "FloorActive"
     else
         return "Intermission"
@@ -85,11 +85,11 @@ end
 -- Generators
 
 lib.Generators.GetCompleted = function()
-	return info.GeneratorsCompleted.Value
+	return Info.GeneratorsCompleted.Value
 end
 
 lib.Generators.GetRequired = function()
-	return info.RequiredGenerators.Value
+	return Info.RequiredGenerators.Value
 end
 
 lib.Generators.GetRemaining = function()
