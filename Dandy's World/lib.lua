@@ -60,14 +60,14 @@ lib.Game.GetInfoData = function()
 end
 
 lib.Game.GetInfoValueObject = function(target)
-	if not target then return nil end
+	if not target then return end
 	local search = string.lower(target)
 	for key, value in pairs(cache.InfoData) do
 		if string.find(string.lower(key), search, 1, true) then
 			return value
 		end
 	end
-	return nil
+	return
 end
 
 lib.Game.GetInfoValue = function(value)
