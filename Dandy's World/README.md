@@ -6,7 +6,7 @@ lib.Game.GetPlayersFolder() -> Folder or nil
 lib.Game.GetInfoFolder() -> Folder or nil
 lib.Game.GetInfoData() -> table
 lib.Game.GetInfoValueObject(string) -> ValueBase or nil
-lib.Game.GetInfoValue() -> number
+lib.Game.GetInfoValue(ValueBase) -> number
 lib.Game.GetGameState() -> string
 
 lib.Generators.GetCompleted() -> number
