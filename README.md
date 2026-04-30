@@ -21,13 +21,13 @@ Please check the correct library file name in the actual minified builds release
 Embed the library somewhere in your script like this:
 
 ```lua
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/Dandy's%20World/lib.lua"))
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/Dandy's%20World/lib.lua"))()
 ```
 
 Minified builds should look something like this:
 
 ```lua
-local lib = loadstring(game:HttpGet("https://github.com/riddance-club/library/releases/latest/download/Dandys_World.lua"))
+local lib = loadstring(game:HttpGet("https://github.com/riddance-club/library/releases/latest/download/Dandys_World.lua"))()
 ```
 
 ### Using the library
@@ -41,7 +41,7 @@ If it is missing, then you will have to check the code yourself to see what it d
 Example code:
 
 ```lua
-local lib = loadstring(game:HttpGet("https://github.com/riddance-club/library/releases/latest/download/Dandys_World.lua"))
+local lib = loadstring(game:HttpGet("https://github.com/riddance-club/library/releases/latest/download/Dandys_World.lua"))()
 
 print(lib.Game.IsRun()) -- boolean
 print(lib.Generators.IsLast()) -- boolean
