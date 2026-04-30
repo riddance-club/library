@@ -4,6 +4,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,7 +32,7 @@ jobs:
               folder=$(basename "$dir")
               out="dist/$folder.lua"
             fi
-            echo "Processing $file - $out"
+            echo "Processing $file -> $out"
             darklua process "$file" "$out" --config darklua.json
             sed -i "s|https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/.*/\([^/]*\.lua\)|https://github.com/riddance-club/library/releases/latest/download/\1|g" "$out"
           done
