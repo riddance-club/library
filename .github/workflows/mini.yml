@@ -1,11 +1,9 @@
 name: Mini Release
-
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-  	
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,10 +16,8 @@ jobs:
           unzip darklua.zip
           chmod +x darklua
           sudo mv darklua /usr/local/bin/
-          
       - name: Prepare dist
         run: mkdir dist
-        
       - name: Process files
         run: |
           find . -name "*.lua" | while read file; do
@@ -38,21 +34,18 @@ jobs:
             darklua process "$file" "$out" --config darklua.json
             sed -i "s|https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/.*/\([^/]*\.lua\)|https://github.com/riddance-club/library/releases/latest/download/\1|g" "$out"
           done
-          
       - name: Move mini tag
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git tag -f mini
           git push origin -f mini
-          
       - name: Delete old release
         continue-on-error: true
         run: |
           gh release delete mini -y || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
       - name: Create mini release
         run: |
           gh release create mini dist/*.lua --title "Mini Build" --notes "Auto-updated build"
