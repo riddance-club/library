@@ -23,6 +23,7 @@ lib.Game = {}
 lib.Generators = {}
 lib.Players = {}
 lib.Twisteds = {}
+lib.Items = {}
 lib.Map = {}
 lib.Utility = util
 
