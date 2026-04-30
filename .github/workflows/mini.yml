@@ -31,13 +31,13 @@ jobs:
             else
               folder=$(basename "$dir")
               folder=$(echo "$folder" | tr -d "'")
-              folder=$(echo "$folder" | tr -d "'")
+              folder=$(echo "$folder" | tr ' ' '_')
               folder=$(echo "$folder" | sed 's/[^a-zA-Z0-9_-]//g')
               out="dist/$folder.lua"
             fi
             echo "Processing $file -> $out"
             darklua process "$file" "$out" --config darklua.json
-            sed -i "s|https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/.*/\([^/]*\.lua\)|https://github.com/riddance-club/library/releases/latest/download/\1|g" "$out"
+            sed -i -E "s|https://raw\.githubusercontent\.com/riddance-club/library/[^\"') ]+?/([^/\"') ]+\.lua)|https://github.com/riddance-club/library/releases/latest/download/\1|g" "$out"
           done
       - name: Move mini tag
         run: |
