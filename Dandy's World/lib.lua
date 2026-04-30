@@ -15,7 +15,9 @@ local cache = {}
 if Info then
 	cache.InfoData = {}
 	for _, v in Info:GetChildren() do
-		cache.InfoData[v.Name] = v
+		if v:IsA("ValueBase") then
+			cache.InfoData[v.Name] = v
+		end
 	end
 end
 
@@ -132,7 +134,7 @@ lib.Generators.IsUnavailable = function(machine)
     return not lib.Generators.IsAvailable(machine)
 end
 
-lib.Generators.GetCompleted = function()
+lib.Generators.GetAnyCompleted = function()
 	for _, machine in lib.Generators.GetAll() do
 		if lib.Generators.IsCompleted(machine) then
 			return machine
@@ -140,7 +142,7 @@ lib.Generators.GetCompleted = function()
 	end
 end
 
-lib.Generators.GetUncompleted = function()
+lib.Generators.GetAnyUncompleted = function()
 	for _, machine in lib.Generators.GetAll() do
 		if lib.Generators.IsUncompleted(machine) then
 			return machine
@@ -148,7 +150,7 @@ lib.Generators.GetUncompleted = function()
 	end
 end
 
-lib.Generators.GetAvailable = function()
+lib.Generators.GetAnyAvailable = function()
 	for _, machine in lib.Generators.GetAll() do
 		if lib.Generators.IsAvailable(machine) then
 			return machine
@@ -156,7 +158,7 @@ lib.Generators.GetAvailable = function()
 	end
 end
 
-lib.Generators.GetUnavailable = function()
+lib.Generators.GetAnyUnavailable = function()
 	for _, machine in lib.Generators.GetAll() do
 		if lib.Generators.IsAvailable(machine) then
 			return machine
