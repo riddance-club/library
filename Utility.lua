@@ -24,7 +24,7 @@ util.services = setmetatable({}, {
     end
 })
 
-local Players = services.Players
+local Players = util.services.Players
 util.LocalPlayer = Players.LocalPlayer
 util.LocalCharacter = util.LocalPlayer.Character
 util.LocalRoot = util.LocalCharacter:FindFirstChild("HumanoidRootPart")
