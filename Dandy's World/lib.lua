@@ -1,6 +1,6 @@
 if not game:IsLoaded() then game.Loaded:Wait() end
 
-local util = loadstring(game:HttpGet("https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/Utility.lua"))
+local util = loadstring(game:HttpGet("https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/Utility.lua"))()
 local services = util.services
 
 local Info = workspace:FindFirstChild("Info")
