@@ -20,10 +20,10 @@ lib.Generators.IsCompleted(GeneratorModel) -> boolean
 lib.Generators.IsAvailable(GeneratorModel) -> boolean
 lib.Generators.IsUncompleted(GeneratorModel) -> boolean
 lib.Generators.IsUnavailable(GeneratorModel) -> boolean
-lib.Generators.GetCompleted() -> GeneratorModel
-lib.Generators.GetUncompleted() -> GeneratorModel
-lib.Generators.GetAvailable() -> GeneratorModel
-lib.Generators.GetUnavailable() -> GeneratorModel
+lib.Generators.GetAnyCompleted() -> GeneratorModel
+lib.Generators.GetAnyUncompleted() -> GeneratorModel
+lib.Generators.GetAnyAvailable() -> GeneratorModel
+lib.Generators.GetAnyUnavailable() -> GeneratorModel
 lib.Generators.GetClosest() -> Model, distance (number)
 lib.Generators.GetCurrentAmount(GeneratorModel) -> number
 lib.Generators.GetRequiredAmount(GeneratorModel) -> number
