@@ -30,6 +30,9 @@ jobs:
               out="dist/$base"
             else
               folder=$(basename "$dir")
+              folder=$(echo "$folder" | tr -d "'")
+              folder=$(echo "$folder" | tr -d "'")
+              folder=$(echo "$folder" | sed 's/[^a-zA-Z0-9_-]//g')
               out="dist/$folder.lua"
             fi
             echo "Processing $file -> $out"
@@ -50,6 +53,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create mini release
         run: |
-          gh release create mini dist/*.lua --title "Mini Build" --notes "Auto-updated build"
+          gh release create mini dist/*.lua --title "Minified builds" --notes "Automatically updated and published minified builds. Minified builds should be slightly faster to download and execute, however are harder to debug."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
