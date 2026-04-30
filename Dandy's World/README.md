@@ -20,11 +20,11 @@ lib.Generators.IsCompleted(GeneratorModel) -> boolean
 lib.Generators.IsAvailable(GeneratorModel) -> boolean
 lib.Generators.IsUncompleted(GeneratorModel) -> boolean
 lib.Generators.IsUnavailable(GeneratorModel) -> boolean
-lib.Generators.GetAnyCompleted() -> GeneratorModel
-lib.Generators.GetAnyUncompleted() -> GeneratorModel
-lib.Generators.GetAnyAvailable() -> GeneratorModel
-lib.Generators.GetAnyUnavailable() -> GeneratorModel
-lib.Generators.GetClosest() -> Model, distance (number)
+lib.Generators.GetAnyCompleted() -> GeneratorModel or nil
+lib.Generators.GetAnyUncompleted() -> GeneratorModel or nil
+lib.Generators.GetAnyAvailable() -> GeneratorModel or nil
+lib.Generators.GetAnyUnavailable() -> GeneratorModel or nil
+lib.Generators.GetClosest() -> Model, distance (number) or nil
 lib.Generators.GetCurrentAmount(GeneratorModel) -> number
 lib.Generators.GetRequiredAmount(GeneratorModel) -> number
 lib.Generators.GetProgress(GeneratorModel) -> number
