@@ -1,0 +1,60 @@
+name: Mini Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  	
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install darklua
+        run: |
+          curl -L https://github.com/seaofvoices/darklua/releases/latest/download/darklua-linux-x86_64.zip -o darklua.zip
+          unzip darklua.zip
+          chmod +x darklua
+          sudo mv darklua /usr/local/bin/
+          
+      - name: Prepare dist
+        run: mkdir dist
+        
+      - name: Process files
+        run: |
+          find . -name "*.lua" | while read file; do
+            [[ "$file" == ./dist/* ]] && continue
+            dir=$(dirname "$file")
+            base=$(basename "$file")
+            if [[ "$dir" == "." ]]; then
+              out="dist/$base"
+            else
+              folder=$(basename "$dir")
+              out="dist/$folder.lua"
+            fi
+            echo "Processing $file - $out"
+            darklua process "$file" "$out" --config darklua.json
+            sed -i "s|https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/.*/\([^/]*\.lua\)|https://github.com/riddance-club/library/releases/latest/download/\1|g" "$out"
+          done
+          
+      - name: Move mini tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git tag -f mini
+          git push origin -f mini
+          
+      - name: Delete old release
+        continue-on-error: true
+        run: |
+          gh release delete mini -y || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create mini release
+        run: |
+          gh release create mini dist/*.lua --title "Mini Build" --notes "Auto-updated build"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

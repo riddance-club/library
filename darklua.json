@@ -1,0 +1,34 @@
+{
+  "generator": {
+    "name": "dense",
+    "column_span": 9999999999
+  },
+  "rules": [
+    "remove_comments",
+    "remove_spaces",
+    "remove_types",
+    "remove_assertions",
+    "remove_debug_profiling",
+    "compute_expression",
+    "convert_index_to_field",
+    "convert_square_root_call",
+    "convert_function_to_assignment",
+    "convert_local_function_to_assign",
+    "remove_method_definition",
+    "remove_method_call",
+    "remove_nil_declaration",
+    "remove_unused_variable",
+    "remove_unused_if_branch",
+    "remove_unused_while",
+    "filter_after_early_return",
+    "group_local_assignment",
+    "remove_empty_do",
+    "remove_continue",
+    "remove_compound_assignment",
+    "remove_floor_division",
+    "remove_function_call_parens",
+    "remove_if_expression",
+    "remove_interpolated_string",
+    "rename_variables"
+  ]
+}
