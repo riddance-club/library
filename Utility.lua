@@ -37,7 +37,7 @@ util.LocalPlayer.CharacterAdded:Connect(function(character)
 end)
 
 util.IsValid = function(obj)
-    return obj and obj.Parent ~= nil
+    return obj and obj.Parent ~= nil or false
 end
 
 util.GetPosition = function(obj)
