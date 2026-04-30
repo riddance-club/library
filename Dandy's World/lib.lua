@@ -318,7 +318,7 @@ lib.Items.GetAll = function()
 end
 
 lib.Items.GetClosest = function()
-	return util.GetClosest(lib.Twisteds.GetAll())
+	return util.GetClosest(lib.Items.GetAll())
 end
 
 -- Map
