@@ -9,6 +9,21 @@ lib.Game.GetInfoValueObject(string) -> ValueBase or nil
 lib.Game.GetInfoValue(ValueBase) -> number
 lib.Game.GetGameState() -> string
 
+lib.Generators.IsPossessed(machine) -> boolean
+Returns true/false if the machine is possessed by Connie.
+
+lib.Generators.IsDefault(machine) [boolean]
+Returns true/false if the machine is default.
+
+lib.Generators.IsDual(machine) [boolean]
+Returns true/false if the machine is dual.
+
+lib.Generators.GetType(machine) [string]
+Returns "Dual" if the machine is Dual, "Default" if default.
+
+lib.Generators.GetMinigameType(machine) [string/table]
+Returns the minigame type, "Default", "Circle", "Treadmill", If it's a dual machine; returns a table like: { ["1"] = "Treadmill", ["2"] = "Circle" }.
+
 lib.Generators.GetCompleted() -> number
 lib.Generators.GetRequired() -> number
 lib.Generators.GetRemaining() -> number
@@ -51,4 +66,6 @@ lib.Twisteds.GetAll() -> table (contains Monsters)
 lib.Twisteds.GetClosest() -> Monster, distance (number)
 
 lib.Map.GetElevator() -> ElevatorModel
+lib.Generators.GetFakeElevator() -> FakeElevatorModel
+Returns the fake elevator.
 ```
