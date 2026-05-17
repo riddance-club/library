@@ -12,16 +12,16 @@ lib.Game.GetGameState() -> string
 lib.Generators.IsPossessed(machine) -> boolean
 Returns true/false if the machine is possessed by Connie.
 
-lib.Generators.IsDefault(machine) [boolean]
+lib.Generators.IsDefault(machine) -> boolean
 Returns true/false if the machine is default.
 
-lib.Generators.IsDual(machine) [boolean]
+lib.Generators.IsDual(machine) -> boolean
 Returns true/false if the machine is dual.
 
-lib.Generators.GetType(machine) [string]
+lib.Generators.GetType(machine) -> string
 Returns "Dual" if the machine is Dual, "Default" if default.
 
-lib.Generators.GetMinigameType(machine) [string/table]
+lib.Generators.GetMinigameType(machine) -> string or table
 Returns the minigame type, "Default", "Circle", "Treadmill", If it's a dual machine; returns a table like: { ["1"] = "Treadmill", ["2"] = "Circle" }.
 
 lib.Generators.GetCompleted() -> number
