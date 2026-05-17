@@ -86,6 +86,41 @@ end
 
 -- Generators
 
+-- [new]: returns boolean if the machine is possessed by connie
+lib.Generators.IsPossessed = function(machine)
+    local stats = machine:FindFirstChild("Stats")
+    return stats and stats.Connie.Value or false
+end
+
+-- [new]: returns boolean if the machine is default
+lib.Generators.IsDefault = function(machine)
+	return machine and machine:GetAttribute("MachineFamily") == "SINGLE" or false
+end
+
+-- [new]: returns boolean if the machine is dual
+lib.Generators.IsDual = function(machine)
+	return not lib.Generators.IsDefault(machine)
+end
+
+-- [new]: returns the type of the machine, "Dual" or "Default"
+lib.Generators.GetType = function(machine)
+	return lib.Generators.IsDefault(machine) and "Default" or "Dual"
+end
+
+-- [new]: returns "Default", "Circle" or "Treadmill", if it's a Dual machine, returns a table like { ["1"] = "Treadmill", ["2"] = "Circle" }
+lib.Generators.GetMinigameType = function(machine)
+	if not machine then return nil end
+
+	if lib.Generators.IsDefault(machine) then
+		return machine:GetAttribute("MinigameType")
+	else
+		return {
+			["1"] = machine:GetAttribute("MinigameType"),
+			["2"] = machine:GetAttribute("Prompt2MinigameType")
+		}
+	end
+end
+
 lib.Generators.GetCompleted = function()
 	return Info.GeneratorsCompleted.Value
 end
@@ -121,15 +156,23 @@ lib.Generators.IsCompleted = function(machine)
     return stats and stats.Completed.Value or false
 end
 
+-- [update]: now supports Dual machines
 lib.Generators.IsAvailable = function(machine)
-    local stats = machine:FindFirstChild("Stats")
-    return stats and stats.ActivePlayer.Value == nil
+	local stats = machine and machine:FindFirstChild("Stats")
+	if not stats then return false end
+		
+	if lib.Generators.IsDual(machine) then
+		return stats.ActivePlayer.Value == nil and stats.ActivePlayer2.Value == nil
+	end
+	
+	return stats.ActivePlayer.Value == nil
 end
 
 lib.Generators.IsUncompleted = function(machine)
     return not lib.Generators.IsCompleted(machine)
 end
 
+-- [update]: now supports Dual machines
 lib.Generators.IsUnavailable = function(machine)
     return not lib.Generators.IsAvailable(machine)
 end
@@ -150,6 +193,7 @@ lib.Generators.GetAnyUncompleted = function()
 	end
 end
 
+-- [update]: now supports Dual machines
 lib.Generators.GetAnyAvailable = function()
 	for _, machine in lib.Generators.GetAll() do
 		if lib.Generators.IsAvailable(machine) then
@@ -158,6 +202,7 @@ lib.Generators.GetAnyAvailable = function()
 	end
 end
 
+-- [update]: now supports Dual machines
 lib.Generators.GetAnyUnavailable = function()
 	for _, machine in lib.Generators.GetAll() do
 		if lib.Generators.IsAvailable(machine) then
@@ -325,6 +370,14 @@ end
 
 lib.Map.GetElevator = function()
 	return Elevator
+end
+
+lib.Map.GetFakeElevator = function()
+	local map = lib.Game.GetMap()
+	if not map then return nil end
+	
+	local area = map:FindFirstChild("FreeArea")
+	return area and area:FindFirstChild("FakeElevator") or nil
 end
 
 return lib
