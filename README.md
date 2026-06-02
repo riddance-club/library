@@ -1,12 +1,12 @@
 # Riddance's game library
-Simplify Roblox script development for games.
+Simplify Roblox development for games.
 ## How to use?
 ### Getting the library
 I recommend you start with the raw source files instead of the minified builds to avoid debugging issues.
 
-You may switch to the minified builds after you are done making your script.
+You may switch to the minified builds after you are done making it.
 
-- Pick the game you want to script.
+- Pick the game you want.
 - Go to it's folder and the containing `lib.lua` file.
 - Click on the "Raw" button to go to the raw file viewer.
 - Copy the URL that you get redirected to.
@@ -18,7 +18,7 @@ Minified builds can be accessed by using this syntax:
 
 Please check the correct library file name in the actual minified builds release. They are not the same as the ones in the raw source.
 
-Embed the library somewhere in your script like this:
+Embed the library somewhere in your code like this:
 
 ```lua
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/riddance-club/library/refs/heads/main/Dandy's%20World/lib.lua"))()
